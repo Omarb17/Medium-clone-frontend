@@ -9,5 +9,6 @@ export const theme = createTheme({
         background: {
             default: "#FFFFFF"
         }  
-    }
+    },
+
 })
