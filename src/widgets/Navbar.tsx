@@ -1,5 +1,5 @@
 "use client";
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -126,7 +126,7 @@ const Navbar = () => {
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton size="large" color="inherit">
               <EditNoteIcon fontSize="large" />
-              <Typography variant="h6">Write</Typography>
+              <Typography variant="body1">Write</Typography>
             </IconButton>
             <IconButton size="large" color="inherit">
               <NotificationsNoneOutlinedIcon fontSize="large" />
