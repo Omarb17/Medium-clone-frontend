@@ -12,4 +12,19 @@ export const theme = createTheme({
         }  
     },
 
+    typography: {
+        fontFamily: "Inter, Arial, sans-serif",
+
+         h4: {
+      fontFamily: "Source Serif 4, Georgia, serif",
+      fontSize: "1.5rem",
+      fontWeight: 600,
+    },
+
+    body1: {
+      fontSize: "1.125rem",
+      lineHeight: 1.7,
+    },
+    }
+
 })
