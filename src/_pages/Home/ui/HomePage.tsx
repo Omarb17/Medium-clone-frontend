@@ -4,20 +4,20 @@ import Navbar from "../../../widgets/Navbar";
 import { useState } from "react";
 
 export default function HomePage() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleSidebarOpen = () => {
     setOpen(true);
   };
 
-  const handleDrawerClose = () => {
+  const handleNavbarClose = () => {
     setOpen(false);
   };
 
   return (
     <>
       <Navbar handleSidebarOpen={handleSidebarOpen} />
-      <Sidebar />
+      <Sidebar handleNavbarClose={handleNavbarClose} open={open} />
       <h1>Home</h1>
     </>
   );

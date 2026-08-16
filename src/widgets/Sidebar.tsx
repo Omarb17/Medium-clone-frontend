@@ -20,6 +20,11 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 
+interface NavbarProps {
+  handleNavbarClose: () => void;
+  open: boolean;
+}
+
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
@@ -81,17 +86,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-const Sidebar = () => {
+const Sidebar = ({ handleNavbarClose, open }: NavbarProps) => {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -111,7 +107,7 @@ const Sidebar = () => {
         open={open}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleNavbarClose}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
             ) : (
