@@ -54,10 +54,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Navbar = ({ handleSidebarOpen }: NavbarProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const [sidebarAnchorEl, setSidebarAnchorEl] = useState<null | HTMLElement>(
-    null,
-  );
-
   const isMenuOpen = Boolean(anchorEl);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
