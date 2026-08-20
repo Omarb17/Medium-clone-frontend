@@ -17,6 +17,11 @@ import mediumLogo from "../../public/images/mediumLogo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import Typography from "@mui/material/Typography";
+import Sidebar from "./Sidebar";
+
+interface NavbarProps {
+  handleSidebarOpen: () => void;
+}
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -46,7 +51,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const Navbar = () => {
+const Navbar = ({ handleSidebarOpen }: NavbarProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -98,6 +103,7 @@ const Navbar = () => {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={handleSidebarOpen}
           >
             <MenuIcon fontSize="large" />
           </IconButton>
@@ -146,6 +152,7 @@ const Navbar = () => {
         </Toolbar>
       </AppBar>
       {renderMenu}
+      <Sidebar />
     </Box>
   );
 };
