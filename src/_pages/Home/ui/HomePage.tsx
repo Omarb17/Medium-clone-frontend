@@ -4,7 +4,7 @@ import Navbar from "../../../widgets/Navbar";
 import { useState } from "react";
 
 export default function HomePage() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const handleSidebarOpen = () => {
     setOpen(true);
@@ -16,8 +16,10 @@ export default function HomePage() {
 
   return (
     <>
-      <Navbar handleSidebarOpen={handleSidebarOpen} />
-      <Sidebar handleNavbarClose={handleNavbarClose} open={open} />
+      <Navbar
+        handleSidebarSwitch={open ? handleNavbarClose : handleSidebarOpen}
+      />
+      <Sidebar open={open} />
       <h1>Home</h1>
     </>
   );
