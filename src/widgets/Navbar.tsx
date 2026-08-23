@@ -20,7 +20,7 @@ import Typography from "@mui/material/Typography";
 import Sidebar from "./Sidebar";
 
 interface NavbarProps {
-  handleSidebarOpen: () => void;
+  handleSidebarSwitch: () => void;
 }
 
 const Search = styled("div")(({ theme }) => ({
@@ -51,7 +51,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const Navbar = ({ handleSidebarOpen }: NavbarProps) => {
+const Navbar = ({ handleSidebarSwitch }: NavbarProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -103,7 +103,7 @@ const Navbar = ({ handleSidebarOpen }: NavbarProps) => {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-            onClick={handleSidebarOpen}
+            onClick={handleSidebarSwitch}
           >
             <MenuIcon fontSize="large" />
           </IconButton>
