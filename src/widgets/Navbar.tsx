@@ -17,10 +17,15 @@ import mediumLogo from "../../public/images/mediumLogo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import Typography from "@mui/material/Typography";
-import Sidebar from "./Sidebar";
+import Button from "@mui/material/Button";
+
+const navItems = ["Our Story", "Membership", "Write", "Sign in"];
 
 interface NavbarProps {
-  handleSidebarSwitch: () => void;
+  handleSidebarSwitch?: () => void;
+  hasSidebarButton: boolean;
+  hasSearchBar: boolean;
+  isWelcomePage: boolean;
 }
 
 const Search = styled("div")(({ theme }) => ({
@@ -51,7 +56,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const Navbar = ({ handleSidebarSwitch }: NavbarProps) => {
+const Navbar = ({
+  handleSidebarSwitch,
+  hasSidebarButton,
+  hasSearchBar,
+  isWelcomePage,
+}: NavbarProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -96,17 +106,19 @@ const Navbar = ({ handleSidebarSwitch }: NavbarProps) => {
           height: "65px",
         }}
       >
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-            onClick={handleSidebarSwitch}
-          >
-            <MenuIcon fontSize="large" />
-          </IconButton>
+        <Toolbar sx={{ marginX: "280px" }}>
+          {hasSidebarButton ? (
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 2 }}
+              onClick={handleSidebarSwitch}
+            >
+              <MenuIcon fontSize="large" />
+            </IconButton>
+          ) : null}
 
           <Box>
             <Image
@@ -117,42 +129,52 @@ const Navbar = ({ handleSidebarSwitch }: NavbarProps) => {
               style={{ borderRadius: "50%" }}
             />
           </Box>
-
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          {hasSearchBar ? (
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+              />
+            </Search>
+          ) : null}
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton size="large" color="inherit">
-              <EditNoteIcon fontSize="large" />
-              <Typography variant="body1">Write</Typography>
-            </IconButton>
-            <IconButton size="large" color="inherit">
-              <NotificationsNoneOutlinedIcon fontSize="large" />
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              onClick={handleProfileMenuOpen}
-              aria-haspopup="true"
-              color="inherit"
-            >
-              <AccountCircle fontSize="large" />
-            </IconButton>
+            {isWelcomePage ? (
+              <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                {navItems.map((item) => (
+                  <Button key={item}>{item}</Button>
+                ))}
+              </Box>
+            ) : (
+              <>
+                <IconButton size="large" color="inherit">
+                  <EditNoteIcon fontSize="large" />
+                  <Typography variant="body1">Write</Typography>
+                </IconButton>
+                <IconButton size="large" color="inherit">
+                  <NotificationsNoneOutlinedIcon fontSize="large" />
+                </IconButton>
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  onClick={handleProfileMenuOpen}
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <AccountCircle fontSize="large" />
+                </IconButton>
+              </>
+            )}
           </Box>
         </Toolbar>
       </AppBar>
       {renderMenu}
-      <Sidebar />
     </Box>
   );
 };
