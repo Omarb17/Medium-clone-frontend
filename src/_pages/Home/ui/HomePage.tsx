@@ -4,7 +4,7 @@ import Navbar from "../../../widgets/Navbar";
 import { useState } from "react";
 import WelcomeOffer from "@/src/widgets/WelcomeOffer";
 
-export default function HomePage() {
+const HomePage = () => {
   const [open, setOpen] = useState(true);
 
   const handleSidebarOpen = () => {
@@ -19,6 +19,9 @@ export default function HomePage() {
     <>
       <Navbar
         handleSidebarSwitch={open ? handleNavbarClose : handleSidebarOpen}
+        hasSidebarButton={true}
+        hasSearchBar={true}
+        isWelcomePage={false}
       />
       <Sidebar open={open} />
       <WelcomeOffer />
@@ -26,4 +29,6 @@ export default function HomePage() {
       <h1>Home</h1>
     </>
   );
-}
+};
+
+export default HomePage;
