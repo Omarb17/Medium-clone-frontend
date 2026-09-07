@@ -3,6 +3,7 @@ import Sidebar from "@/src/widgets/Sidebar";
 import Navbar from "../../../widgets/Navbar";
 import { useState } from "react";
 import WelcomeOffer from "@/src/widgets/WelcomeOffer";
+import { StoriesList } from "../widgets/StoriesList";
 
 const HomePage = () => {
   const [open, setOpen] = useState(true);
@@ -25,8 +26,7 @@ const HomePage = () => {
       />
       <Sidebar open={open} />
       <WelcomeOffer />
-
-      <h1>Home</h1>
+      <StoriesList />
     </>
   );
 };

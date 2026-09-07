@@ -106,7 +106,7 @@ const Navbar = ({
           height: "65px",
         }}
       >
-        <Toolbar sx={{ marginX: "280px" }}>
+        <Toolbar sx={{ marginX: isWelcomePage ? "280px" : "0px" }}>
           {hasSidebarButton ? (
             <IconButton
               size="large"

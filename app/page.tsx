@@ -4,8 +4,8 @@ import WelcomePage from "@/src/_pages/Welcome";
 export default function Home() {
   return (
     <div>
-      <WelcomePage />
-      {/* <HomePage /> */}
+      {/* <WelcomePage /> */}
+      <HomePage />
     </div>
   );
 }
