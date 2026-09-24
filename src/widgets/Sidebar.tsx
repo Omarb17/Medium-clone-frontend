@@ -15,6 +15,8 @@ import Person2Icon from "@mui/icons-material/Person2";
 import ArticleIcon from "@mui/icons-material/Article";
 import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
 import GroupIcon from "@mui/icons-material/Group";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface NavbarProps {
   open: boolean;
@@ -22,7 +24,17 @@ interface NavbarProps {
 
 const drawerWidth = 240;
 
+const links = [
+  { label: "Home", href: "/", icon: <HomeIcon /> },
+  { label: "Library", href: "/library", icon: <BookmarksIcon /> },
+  { label: "Profile", href: "/profile", icon: <Person2Icon /> },
+  { label: "Stories", href: "/stories", icon: <ArticleIcon /> },
+  { label: "Stats", href: "/stats", icon: <SignalCellularAltIcon /> },
+  { label: "Following", href: "/following", icon: <GroupIcon /> },
+];
+
 const Sidebar = ({ open }: NavbarProps) => {
+  const pathname = usePathname();
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -42,63 +54,26 @@ const Sidebar = ({ open }: NavbarProps) => {
         anchor="left"
         open={open}
       >
-        <Divider />
         <List>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <BookmarksIcon />
-              </ListItemIcon>
-              <ListItemText primary="Library" />
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <Person2Icon />
-              </ListItemIcon>
-              <ListItemText primary="Profile" />
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <ArticleIcon />
-              </ListItemIcon>
-              <ListItemText primary="Stories" />
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <SignalCellularAltIcon />
-              </ListItemIcon>
-              <ListItemText primary="Stats" />
-            </ListItemButton>
-          </ListItem>
-        </List>
-        <Divider />
-        <List>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <GroupIcon />
-              </ListItemIcon>
-              <ListItemText primary="Following" />
-            </ListItemButton>
-          </ListItem>
+          {links.map((link) => {
+            const active = pathname === link.href;
+            return (
+              <ListItem key={link.href} disablePadding>
+                <ListItemButton
+                  component={Link}
+                  href={link.href}
+                  sx={{
+                    "& .MuiListItemIcon-root": {
+                      color: active ? "black" : "grey.500",
+                    },
+                  }}
+                >
+                  <ListItemIcon>{link.icon}</ListItemIcon>
+                  <ListItemText primary={link.label} />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
         </List>
       </Drawer>
     </Box>
