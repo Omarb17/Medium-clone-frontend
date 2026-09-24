@@ -59,6 +59,8 @@ export const StoriesList = () => {
             width: "800px",
             minHeight: "250px",
             padding: "15px",
+            backgroundColor: "white",
+            boxShadow: 0,
           }}
         >
           <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
@@ -122,13 +124,13 @@ export const StoriesList = () => {
 
                 <Box sx={{ display: "flex", gap: 1 }}>
                   <IconButton aria-label="add to favorites">
-                    <ThumbDownOutlinedIcon fontSize="large" />
+                    <ThumbDownOutlinedIcon fontSize="medium" />
                   </IconButton>
                   <IconButton aria-label="add to favorites">
-                    <BookmarkAddOutlinedIcon fontSize="large" />
+                    <BookmarkAddOutlinedIcon fontSize="medium" />
                   </IconButton>
                   <IconButton aria-label="add to favorites">
-                    <MoreHorizIcon fontSize="large" />
+                    <MoreHorizIcon fontSize="medium" />
                   </IconButton>
                 </Box>
               </Box>
