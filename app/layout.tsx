@@ -4,6 +4,7 @@ import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@/src/shared/ui/theme/ThemeProvider";
 import Appshell from "@/src/widgets/AppShell";
+import AuthInitializer from "@/src/features/auth/ui/AuthInitializer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,8 @@ export default function RootLayout({
           {" "}
           <ThemeProvider>
             {" "}
-            <Appshell>{children} </Appshell>
+            <AuthInitializer />
+            <Appshell> {children} </Appshell>
           </ThemeProvider>{" "}
         </AppRouterCacheProvider>
       </body>

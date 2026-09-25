@@ -2,18 +2,33 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import Box from "@mui/material/Box";
+
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
-import Box from "@mui/material/Box";
+import { useAuthStore } from "@/src/features/auth/model/authStore";
 
 interface AppShellProps {
   children: React.ReactNode;
 }
 
-const Appshell = ({ children }: AppShellProps) => {
+const AppShell = ({ children }: AppShellProps) => {
   const [open, setOpen] = useState(true);
   const pathname = usePathname();
+
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
+  const isInitialized = useAuthStore((state) => state.isInitialized);
+
   const isStoryPage = pathname.startsWith("/stories/");
+
+  if (!isInitialized) {
+    return null;
+  }
+
+  if (!isAuthenticated) {
+    return <>{children}</>;
+  }
 
   const handleSidebarOpen = () => {
     setOpen(true);
@@ -31,6 +46,7 @@ const Appshell = ({ children }: AppShellProps) => {
         hasSearchBar={true}
         isWelcomePage={false}
       />
+
       {!isStoryPage && <Sidebar open={open} />}
 
       <Box
@@ -46,4 +62,4 @@ const Appshell = ({ children }: AppShellProps) => {
   );
 };
 
-export default Appshell;
+export default AppShell;
