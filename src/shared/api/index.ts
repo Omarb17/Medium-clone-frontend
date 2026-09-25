@@ -1,3 +1,3 @@
-export { apiClient } from './client'; // If you want to export the client itself
+export { apiClient } from './client'; 
 export { login } from './endpoints/login';
 export type { LoginCredentials } from './endpoints/login';
