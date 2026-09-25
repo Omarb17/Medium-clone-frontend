@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { stories } from "../api";
+import { useEffect, useState } from "react";
+import { storyApi, type Story } from "@/src/entities/story";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -16,21 +16,15 @@ import Box from "@mui/material/Box";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import Link from "next/link";
 
 export const StoriesList = () => {
-  interface Story {
-    id: number;
-    title: string;
-    subTitle: string;
-    text: string;
-  }
-
   const [storiesList, setstoriesList] = useState<Story[]>([]);
 
   useEffect(() => {
     const loadStories = async () => {
       try {
-        const response = await stories.getAllStories();
+        const response = await storyApi.getAllStories();
         setstoriesList(response.data);
       } catch (error) {
         console.log("Failed to fetch users", error);
@@ -52,7 +46,8 @@ export const StoriesList = () => {
       {storiesList.map((story) => (
         <Card
           key={story.id}
-
+          component={Link}
+          href={`/stories/${story.id}`}
           sx={{
             display: "flex",
             flexDirection: "row",
@@ -73,7 +68,7 @@ export const StoriesList = () => {
               title={
                 <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                   <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                    Omar Bouslime
+                    {story.userName}
                   </Typography>
                   <Typography
                     variant="body2"
@@ -92,7 +87,6 @@ export const StoriesList = () => {
               <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
                 {story.subTitle}
               </Typography>
-              <Typography variant="body2">well meaning and kindly.</Typography>
             </CardContent>
 
             <CardActions disableSpacing>
