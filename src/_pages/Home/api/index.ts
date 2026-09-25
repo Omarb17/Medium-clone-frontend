@@ -1,1 +1,0 @@
-export { stories } from './endpoints/stories';
